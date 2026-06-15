@@ -1,0 +1,29 @@
+/* src/styles/base.css */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --dash-sidebar-width: 280px;
+    --dash-primary: #056CF2; /* Brand Blue from Footer */
+    --dash-primary-light: #9DC7FF; /* Medical Light Blue from Logo */
+    --dash-bg: #ffffff;
+    --dash-sidebar-bg: #f9fafb;
+    --dash-border: #e4e4e7;
+    --dash-text-main: #18181b;
+    --dash-text-muted: #71717a;
+    --dash-accent-hover: #f4f4f5;
+}
+
+.dark {
+    --dash-bg: rgb(1, 11, 37); /* Footer Deep Blue */
+    --dash-sidebar-bg: rgb(1, 11, 37); 
+    --dash-border: rgba(255, 255, 255, 0.08); /* Finer border for dark bg */
+    --dash-text-main: #f9fafb;
+    --dash-text-muted: #9ca3af;
+    --dash-accent-hover: rgba(255, 255, 255, 0.05);
+    /* En mode sombre, le texte coloré passe au blanc/bleu clair pour éviter bleu sur bleu */
+    --dash-primary-text: #c7dcff;
+}
+
+* {
+    box-sizing: border-box;
+}

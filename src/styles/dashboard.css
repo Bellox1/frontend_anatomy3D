@@ -1,0 +1,198 @@
+/* src/styles/dashboard.css */
+@import './base.css';
+
+/* Dashboard Grid */
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.dash-card {
+    border: 1px solid var(--dash-border);
+    border-radius: 12px;
+    padding: 20px;
+    background: var(--dash-bg);
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.dash-card.full-width {
+    grid-column: span 3;
+    min-height: 400px;
+}
+
+.card-placeholder-svg { 
+    color: rgba(9, 9, 11, 0.1); 
+    display: block; 
+}
+
+.dark .card-placeholder-svg {
+    color: rgba(255, 255, 255, 0.05);
+}
+
+.p-0 { padding: 0 !important; }
+.overflow-hidden { overflow: hidden !important; }
+
+.comparison-grid-dash {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.table-container-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+}
+
+/* Dashboard Grid */
+.aspect-video {
+    aspect-ratio: 16 / 9;
+}
+
+/* Home Link Hero Style */
+.dash-home-link-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 13px 28px;
+    background: #056CF2;
+    border-radius: 100px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(5, 108, 242, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dash-home-link-hero:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(5, 108, 242, 0.4);
+    background: #034ec9;
+}
+
+.dash-home-link-hero .home-link-text {
+    letter-spacing: 0.2px;
+}
+
+.dash-role-wrapper {
+    position: absolute;
+    top: 32px;
+    right: 40px;
+}
+
+@media (max-width: 1024px) {
+    .student-overview-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .dash-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+    .dash-card.full-width {
+        grid-column: span 1 !important;
+    }
+    .dash-role-wrapper {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    .dash-home-link-hero {
+        padding: 12px 16px;
+        font-size: 13px;
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+        white-space: normal;
+        word-break: break-word;
+    }
+    .dash-home-link-hero svg {
+        flex-shrink: 0;
+    }
+
+    /* Analytics & Lists */
+    .comparison-grid-dash {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .student-overview-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    .radar-layout {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    .radar-metrics {
+        width: 100% !important;
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .radar-stat-box {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    /* User Profile Header */
+    .user-profile-header {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 15px !important;
+        padding: 20px !important;
+    }
+
+    /* Grids in sub-views */
+    .detail-grid-responsive {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Table Responsiveness */
+    .table-container-responsive {
+        width: 100% !important;
+        display: block !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        position: relative !important;
+        border-radius: 12px;
+    }
+    .table-container-responsive table {
+        min-width: 800px !important;
+        width: 100% !important;
+        border-collapse: collapse !important;
+    }
+    .hide-mobile {
+        display: none;
+    }
+    .expanded-sharing-area {
+        padding: 15px 15px 15px 20px !important;
+    }
+    .filter-container-responsive {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-top: 10px !important;
+        display: flex !important;
+        flex-direction: column !important; /* Force l'un en dessous de l'autre */
+        gap: 8px !important;
+    }
+    .filter-select-responsive {
+        width: 100% !important;
+        flex: none !important;
+        padding: 8px 12px !important;
+        font-size: 13px !important;
+    }
+}
+
+.filter-container-responsive {
+    display: flex;
+    gap: 10px;
+}
