@@ -7,7 +7,6 @@ import {
     RotateCcw,
     AlertCircle,
     Search,
-    Plus,
     X,
     FolderTree,
 } from 'lucide-react';
