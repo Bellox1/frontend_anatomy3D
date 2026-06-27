@@ -102,6 +102,7 @@ const TestPage: React.FC = () => {
   const [step,                 setStep]                = useState(1);
   const [publicStats,          setPublicStats]         = useState<{models_count: number, quizzes_count: number}>({ models_count: 1, quizzes_count: 5000 });
   const [reviews,              setReviews]             = useState<any[]>([]);
+  const [loading,              setLoading]             = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -197,11 +198,14 @@ const TestPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     setError(null);
+    setLoading(true);
 
     if (step === 1) {
       if (formData.password !== formData.confirmPassword) {
         setError(language === 'fr' ? "Les mots de passe ne correspondent pas." : "Passwords do not match.");
+        setLoading(false);
         return;
       }
       try {
@@ -216,6 +220,8 @@ const TestPage: React.FC = () => {
         setError(null);
       } catch (err: any) {
         setError(err.message || (language === 'fr' ? "Erreur lors de l'envoi du code." : "Error while sending the code."));
+      } finally {
+        setLoading(false);
       }
     } else {
       try {
@@ -234,6 +240,7 @@ const TestPage: React.FC = () => {
         setTimeout(() => navigate('/dash'), 1500);
       } catch (err: any) {
         setError(err.message || (language === 'fr' ? "Erreur lors de l'inscription." : "Error during registration."));
+        setLoading(false);
       }
     }
   };
@@ -534,7 +541,10 @@ const TestPage: React.FC = () => {
                       <div className="middle-fields" style={{ marginTop: '24px' }}>
                         <p id="form-agree">
                           <span className="description-medium">{language === 'fr' ? "Un code de vérification vous sera envoyé par email." : "A verification code will be sent to your email."}</span>
-                          <button type="submit" className="custom-button blue large arrows-button-blue" style={{ width: '100%', justifyContent: 'center' }}>{language === 'fr' ? "S'inscrire" : "Sign up"} <ArrowLg /></button>
+                          <button type="submit" disabled={loading} className="custom-button blue large arrows-button-blue" style={{ width: '100%', justifyContent: 'center', opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
+                            {loading ? (language === 'fr' ? "Chargement..." : "Loading...") : (language === 'fr' ? "S'inscrire" : "Sign up")} 
+                            {!loading && <ArrowLg />}
+                          </button>
                         </p>
                       </div>
                     </>
@@ -585,7 +595,10 @@ const TestPage: React.FC = () => {
                       </div>
                       <div className="middle-fields" style={{ marginTop: '24px', display: 'flex', flexDirection: 'row', gap: '12px', flexWrap: 'nowrap' }}>
                         <button type="button" onClick={() => setStep(1)} className="custom-button outline large" style={{ flex: '1', justifyContent: 'center', color: '#fff', border: '1px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.05)' }}>{language === 'fr' ? "Retour" : "Back"}</button>
-                        <button type="submit" className="custom-button blue large arrows-button-blue" style={{ flex: '2', justifyContent: 'center' }}>{language === 'fr' ? "Valider & Démarrer" : "Verify & Start"} <ArrowLg /></button>
+                        <button type="submit" disabled={loading} className="custom-button blue large arrows-button-blue" style={{ flex: '2', justifyContent: 'center', opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
+                          {loading ? (language === 'fr' ? "Vérification..." : "Verifying...") : (language === 'fr' ? "Valider & Démarrer" : "Verify & Start")} 
+                          {!loading && <ArrowLg />}
+                        </button>
                       </div>
                     </>
                   )}
